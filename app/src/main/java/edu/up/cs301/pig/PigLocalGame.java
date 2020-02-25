@@ -3,6 +3,7 @@ package edu.up.cs301.pig;
 import edu.up.cs301.game.GameFramework.GamePlayer;
 import edu.up.cs301.game.GameFramework.LocalGame;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
+import edu.up.cs301.game.GameFramework.gameConfiguration.GameConfig;
 import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
@@ -56,16 +57,20 @@ public class PigLocalGame extends LocalGame {
                 officialState.setPlayer1score(officialState.getPlayer1score() + officialState.getHold());
             }
             officialState.setHold(0);
-            officialState.setTurn(1 - officialState.getTurn());
+            if (players.length == 2) {
+                officialState.setTurn(1 - officialState.getTurn());
+            }
             return true;
         } else if (action instanceof PigRollAction) {
             Random rand = new Random();
-            int dice = rand.nextInt(5) + 1;
+            int dice = rand.nextInt(6) + 1;
             if (dice != 1) {
                 officialState.setHold(dice + officialState.getHold());
             } else {
                 officialState.setHold(0);
-                officialState.setTurn(1 - officialState.getTurn());
+                if (players.length == 2) {
+                    officialState.setTurn(1 - officialState.getTurn());
+                }
 
             }
             return true;
