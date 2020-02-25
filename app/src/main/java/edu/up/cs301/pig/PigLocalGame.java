@@ -66,10 +66,13 @@ public class PigLocalGame extends LocalGame {
             int dice = rand.nextInt(6) + 1;
             if (dice != 1) {
                 officialState.setHold(dice + officialState.getHold());
+                officialState.setDie(dice);
             } else {
                 officialState.setHold(0);
                 if (players.length == 2) {
                     officialState.setTurn(1 - officialState.getTurn());
+                    officialState.setDie(dice);
+
                 }
 
             }
@@ -105,12 +108,12 @@ public class PigLocalGame extends LocalGame {
         String playerName;
 
         if (officialState.getPlayer0score() >= 50) {
-            playerName = "Player Zero";
+            playerName = "Player Zero Won! ";
             return playerName;
         }
 
         if (officialState.getPlayer1score() >= 50) {
-            playerName = "Player One";
+            playerName = "Player One Won! ";
             return playerName;
         }
 
