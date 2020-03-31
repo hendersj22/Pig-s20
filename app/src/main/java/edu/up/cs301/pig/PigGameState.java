@@ -2,7 +2,7 @@ package edu.up.cs301.pig;
 
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
-public class PigGameState extends GameState {
+public class  PigGameState extends GameState {
     private int turn;
     private int player0score;
     private int player1score;
